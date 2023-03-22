@@ -17,6 +17,7 @@ class Car(models.Model):
         max_digits=7,
         decimal_places=2
     )
+    # arabanın müsaitlik durumu tamirde temizlikte gibi durumlarda müsait değil
     availability = models.BooleanField(default=True)
 
     def __str__(self):
