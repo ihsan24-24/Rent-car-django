@@ -75,7 +75,9 @@ class ReservationDetailView(RetrieveUpdateDestroyAPIView):
         start = instance.start_date
         today = timezone.now().date()
         if Reservation.objects.filter(car=car).exists():
+            # araba için rezervasyon uzatılacaksa arabanın bugünden sora olan tüm rezervasyonlarını çekiyoruz
             for res in Reservation.objects.filter(car=car, end_date__gte=today):
+                # arabanın müsaitlik durumu kontrol ediliyor
                 if start < res.start_date < end:
                     return Response({'message': 'Car is not available...'})
 
